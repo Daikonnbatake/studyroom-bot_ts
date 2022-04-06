@@ -1,0 +1,72 @@
+{
+    "name": "settings",
+    "description": "このサーバー全体の環境設定を行います。",
+    "type": 1,
+    "options":
+    [
+        {
+            "name": "study-room",
+            "description": "自習室(ボイスチャンネル)を登録または解除します。",
+            "type": 2,
+            "options":
+            [
+                {
+                    "name": "add",
+                    "description": "選択したボイスチャンネルを自習室にします。",
+                    "type": 1,
+                    "options":
+                    [
+                        {
+                            "name": "voice-channel",
+                            "description": "ボイスチャンネルを選択してください。",
+                            "type": 7,
+                            "required": true
+                        }
+                    ]
+                },
+                {
+                    "name": "pop",
+                    "description": "選択したボイスチャンネルを自習室から除外します。",
+                    "type": 1,
+                    "options":
+                    [
+                        {
+                            "name": "voice-channel",
+                            "description": "ボイスチャンネルを選択してください。",
+                            "type": 7,
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "announce",
+            "description": "自習室Bot が定期アナウンスを行うチャンネルを設定します。",
+            "type": 1,
+            "options":
+            [
+                {
+                    "name": "channel",
+                    "description": "定期アナウンスを行うチャンネルを選択してください。",
+                    "type": 7,
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "role",
+            "description": "このサーバーで自習時間に応じて自動的にロールを付与するかどうかを設定します。",
+            "type": 1,
+            "options":
+            [
+                {
+                    "name": "status",
+                    "description": "True なら自動付与 ON、False なら自動付与 OFF。",
+                    "type": 5,
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

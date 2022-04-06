@@ -1,0 +1,32 @@
+{
+    "name": "rank",
+    "description": "各種ランキングを表示します。",
+    "type": 1,
+    "options":
+    [
+        {
+            "name": "global",
+            "description": "全体ランキングを表示します。",
+            "type": 1
+        },
+        {
+            "name": "local",
+            "description": "サーバー内ランキングを表示します。",
+            "type": 1
+        },
+        {
+            "name": "privacy",
+            "description": "全体ランキングへの掲載可否を設定します。",
+            "type": 1,
+            "options":
+            [
+                {
+                    "name": "status",
+                    "description": "True なら掲載を許可、False なら掲載を拒否。",
+                    "type": 5,
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "name": "card",
+    "description": "自習カードについてのコマンド群です。",
+    "type": 1,
+    "options":
+    [
+        {
+            "name": "get",
+            "description": "自習カードを表示します。",
+            "type": 1,
+            "options":
+            [
+                {
+                    "name": "user",
+                    "description": "ユーザーを指定して自習カードを表示します。",
+                    "type": 6,
+                    "required": false
+                },
+                {
+                    "name": "id",
+                    "description": "idを指定して自習カードを表示します。",
+                    "type": 3,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "name": "badge",
+            "description": "バッジを設定します。",
+            "type": 1
+        },
+        {
+            "name": "privacy",
+            "description": "自習カードの公開設定を変更します。",
+            "type": 1,
+            "options":
+            [
+                {
+                    "name": "status",
+                    "description": "True なら公開、False なら自分にだけ表示。",
+                    "type": 5,
+                    "required": true
+                }
+            ]
+        }
+    ]
+}
