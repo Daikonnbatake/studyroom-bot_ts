@@ -1,4 +1,4 @@
-import { Client, Intents } from '/usr/local/lib/node_modules/discord.js';
+import { Client, Intents } from 'discord.js';
 import fs from 'fs';
 
 import { BOT_CONSTANTS } from './constants';

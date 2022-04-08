@@ -9,7 +9,7 @@ services:
     container_name: bot
 
     volumes:
-      - ../source:/usr/srb4
+      - ../source:/usr/srb4/source
 
     networks:
       - bot-db

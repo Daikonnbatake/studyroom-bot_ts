@@ -1,4 +1,4 @@
-import { CommandInteraction, CommandInteractionOption } from '/usr/local/lib/node_modules/discord.js'
+import { CommandInteraction, CommandInteractionOption } from 'discord.js'
 import { ISlashCommand } from '../interfaces';
 
 const rank: ISlashCommand =
