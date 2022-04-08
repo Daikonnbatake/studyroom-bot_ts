@@ -1,18 +1,22 @@
 import fs from 'fs';
 
+import { bot, mysql } from '../conf.json';
+
 export namespace BOT_CONSTANTS
 {
+	/* conf.json 読み込み */
+
 	// bot の root ディレクトリ
-	export const CWD:		string	= '/usr/srb4';
+	export const CWD:		string	= '/usr/srb4/source';
 	
 	// bot の token
-	export const TOKEN:		string	= '';
+	export const TOKEN:		string	= bot.token;
 	
 	// bot アカウントの ID
-	export const CLIENT_ID:	string	= '957222994927816745';
+	export const CLIENT_ID:	string	= bot.client_id;
 	
 	//  開発用　guild のID
-	export const GUILD_ID:	string	= '950792504326897774';
+	export const GUILD_ID:	string	= bot.dev_guild_id;
 
 
 	const dir: string = `${BOT_CONSTANTS.CWD}/slash-commands`;

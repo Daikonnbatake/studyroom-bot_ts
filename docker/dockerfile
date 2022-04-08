@@ -28,7 +28,10 @@ RUN apk add --no-cache curl fontconfig \
 
 # typescript インストール & 設定
 
-RUN npm install -g typescript discord.js @discordjs/rest discord-api-types puppeteer ts-node-dev
-RUN mkdir -p /usr/srb4
-RUN cd /usr/srb4
-RUN tsc --init
+RUN mkdir -p /usr/srb4/source
+WORKDIR /usr/srb4
+
+RUN npm init -y \
+    && npm install typescript discord.js @discordjs/rest discord-api-types puppeteer ts-node-dev \
+    && npx tsc --init \
+    && sed -i 's@// \("resolveJsonModule": true,\)@\1@g' tsconfig.json
