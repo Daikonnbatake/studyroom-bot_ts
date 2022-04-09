@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  bot:
+    tty: true
+    build:
+      context: .
+      dockerfile: dockerfile-bot
+    image: bot
+    
+    container_name: bot
+
+    volumes:
+      - ../bot:/usr/srb3/source
+
+    networks:
+      - bot-db
+  
+  api:
+    tty: true
+    build:
+      context: .
+      dockerfile: dockerfile-api
+    image: api
+
+    container_name: api
+
+    volumes:
+      - ../api:/usr/srb3/source
+    
+    networks:
+      - bot-api
+      - bot-db
+
+  mysql:
+    image: mysql
+
+    container_name: mysql
+
+    volumes:
+      - srb3-db:/var/lib/mysql
+
+    networks:
+      - bot-db
+
+volumes:
+  srb3-db:
+
+networks:
+  bot-db:
+  bot-api:
