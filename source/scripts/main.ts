@@ -28,7 +28,6 @@ for (const file of commandFiles)
 	commands[command.name] = command;
 }
 
-
 /* bot のインスタンス化 & 各種イベント処理 */
 
 const BOT: Client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -43,17 +42,21 @@ BOT.on('ready', () =>
 // コマンド受け付け
 BOT.on('interactionCreate', async (interaction) =>
 {
-	
+	// スラッシュコマンドならこっち
 	if (interaction.isCommand())
 	{
 		const command: ISlashCommand = commands[interaction.commandName];
 		try { await command.execute(interaction); }
 		catch(e) { console.error(e); }
 	}
-
-	console.log(interaction);
-
-
+	
+	// 右クリックメニューコマンドならこっち
+	else if(interaction.isApplicationCommand())
+	{
+		const command: ISlashCommand = commands[interaction.commandName];
+		try { await command.execute(interaction); }
+		catch(e) { console.error(e); }
+	}
 });
 
 BOT.login(BOT_CONSTANTS.TOKEN);
