@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./docker
+cd ./.docker
 
-# run discord-bot
-docker exec bot npx ts-node-dev --poll /usr/srb4/source/scripts/main.ts
+# run 
+docker exec -i api /bin/bash -c "cd /usr/srb3/source && uvicorn main:app --reload --host 0.0.0.0 --port 8000"

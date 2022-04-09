@@ -7,7 +7,7 @@ export namespace BOT_CONSTANTS
 	/* conf.json 読み込み */
 
 	// bot の root ディレクトリ
-	export const CWD:		string	= '/usr/srb4/source';
+	export const CWD:		string	= '/usr/srb3/source';
 	
 	// bot の token
 	export const TOKEN:		string	= bot.token;

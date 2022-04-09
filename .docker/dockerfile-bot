@@ -1,0 +1,14 @@
+FROM alpine
+
+RUN apk add --no-cache \
+    nodejs \
+    npm
+
+# typescript インストール & 設定
+RUN mkdir -p /usr/srb3/source
+WORKDIR /usr/srb3
+
+RUN npm init -y \
+    && npm install typescript discord.js @discordjs/rest discord-api-types ts-node-dev \
+    && npx tsc --init \
+    && sed -i 's@// \("resolveJsonModule": true,\)@\1@g' tsconfig.json
