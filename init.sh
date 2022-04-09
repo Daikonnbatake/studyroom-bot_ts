@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./docker
+cd ./.docker
 
 # docker-compose up
-docker-compose -p srb4 up -d --build
+docker-compose -p srb3 up -d --build

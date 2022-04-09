@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./docker
+cd ./.docker
 
 # run discord-bot
-docker exec bot npx ts-node-dev --poll /usr/srb4/source/scripts/main.ts
+docker exec bot npx ts-node-dev --poll /usr/srb3/source/scripts/main.ts
