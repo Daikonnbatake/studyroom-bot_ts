@@ -1,3 +1,4 @@
+import collections
 import pymysql, pymysql.cursors
 import json
 
@@ -76,4 +77,8 @@ class DBAccess:
         else: return (sql + ' WHERE ' + where, placeholder)
     
     # 簡易 INSERT
-    
+    @classmethod
+    @connect
+    def insert(cls, table, column=[], values=[]):
+        sql = 'INSERT INTO %s (%s) VALUE (%s)' % (table, ', '.join(column), ', '.join(['%s']*len(values)))
+        return (sql, values)

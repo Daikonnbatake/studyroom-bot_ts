@@ -15,6 +15,7 @@ with open('/usr/srb3/source/conf.json', 'r', encoding='utf8') as f:
     db.database(conf['db'])
 
 print(db.select('mst_roles', ['id', 'name'], 'name=%s', ('灰筆',)))
+print(db.insert('test', ['number', 'string'], ['999', 'abc']))
 
 app = FastAPI(
     title = '自習室API',
