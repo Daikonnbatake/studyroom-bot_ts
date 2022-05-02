@@ -1,7 +1,20 @@
+import json
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 from routers import badge, guild, ranking, studytime, user
+
+from utilities.db_access import DBAccess as db
+
+with open('/usr/srb3/source/conf.json', 'r', encoding='utf8') as f:
+    conf = json.load(f)['mysql']
+    db.host(conf['host'])
+    db.port(conf['port'])
+    db.user(conf['user'])
+    db.password(conf['password'])
+    db.database(conf['db'])
+
+print(db.select('mst_roles', ['id', 'name'], 'name=%s', ('灰筆',)))
 
 app = FastAPI(
     title = '自習室API',
