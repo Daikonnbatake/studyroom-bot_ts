@@ -34,7 +34,7 @@ class DBAccess:
     # 接続/解放デコレータ
     def connect(func):
         def wrapper(self, *args, **kwargs):
-            ret = 0
+            ret = 'error'
             connection = pymysql.connect(
                 host = self.__host,
                 port = self.__port,
