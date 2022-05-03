@@ -14,7 +14,7 @@ services:
       - ../bot:/usr/srb3/source
 
     networks:
-      - bot-db
+      - bot-api
     
     command: npx ts-node-dev --poll /usr/srb3/source/scripts/main.ts
   
@@ -35,22 +35,9 @@ services:
     
     networks:
       - bot-api
-      - bot-db
-
-  mysql:
-    image: mysql
-
-    container_name: mysql
-
-    volumes:
-      - srb3-db:/var/lib/mysql
-
-    networks:
-      - bot-db
 
 volumes:
   srb3-db:
 
 networks:
-  bot-db:
   bot-api:
