@@ -54,6 +54,8 @@ async def getBadgeAcquired(user_id):
 # 現在装備しているバッジを取得する
 @router.get('/v1/badges/equipped/{user_id}', tags=['badges'], response_model=Badges)
 async def getBadgeEqyupped(user_id):
+    
+    # 戻り値の定義とDBから各種データを取得
     ret = Badges()
     res = db.select('users', ['id', 'badge_equipe_1', 'badge_equipe_2', 'badge_equipe_3'], 'id = %s', [user_id])
     badges = db.select('mst_badge', ['*'])
