@@ -54,8 +54,9 @@ class DBAccess:
                     connection.commit()
 
             except Exception as e:
-                print('type:', str(type(e)))
-                print('args:', str(e.args))
+                print('DB_ERROR:')
+                print('          type:', str(type(e)))
+                print('          args:', str(e.args), '\n')
                 connection.rollback()
             
             finally: connection.close()
