@@ -34,7 +34,7 @@ class DBAccess:
     # 接続/解放デコレータ
     def connect(func):
         def wrapper(self, *args, **kwargs):
-            ret = 0
+            ret = 'error'
             connection = pymysql.connect(
                 host = self.__host,
                 port = self.__port,
@@ -52,10 +52,13 @@ class DBAccess:
                     else: cursor.execute(tmp[0], tmp[1])
                     ret = cursor.fetchall()
                     connection.commit()
+                
+                if len(ret) == 1: ret = ret[0]
 
             except Exception as e:
-                print('type:', str(type(e)))
-                print('args:', str(e.args))
+                print('DB_ERROR:')
+                print('          type:', str(type(e)))
+                print('          args:', str(e.args), '\n')
                 connection.rollback()
             
             finally: connection.close()
@@ -87,4 +90,13 @@ class DBAccess:
     @connect
     def insert(cls, table, column=[], values=[]):
         sql = 'INSERT INTO %s (%s) VALUE (%s)' % (table, ', '.join(column), ', '.join(['%s']*len(values)))
+        return (sql, values)
+    
+
+    # 簡易 UPDATE
+    @classmethod
+    @connect
+    def update(cls, table, column=[], values=[], where='', placeholder=[]):
+        sql = 'UPDATE %s SET %s WHERE %s' % (table, ', '.join(['%s = %s' % (column[i], '%s') for i in range(len(column))]), where)
+        values.extend(placeholder)
         return (sql, values)
