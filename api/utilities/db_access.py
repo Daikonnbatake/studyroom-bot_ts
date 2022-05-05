@@ -91,3 +91,12 @@ class DBAccess:
     def insert(cls, table, column=[], values=[]):
         sql = 'INSERT INTO %s (%s) VALUE (%s)' % (table, ', '.join(column), ', '.join(['%s']*len(values)))
         return (sql, values)
+    
+
+    # 簡易 UPDATE
+    @classmethod
+    @connect
+    def update(cls, table, column=[], values=[], where='', placeholder=[]):
+        sql = 'UPDATE %s SET %s WHERE %s' % (table, ', '.join(['%s = %s' % (column[i], '%s') for i in range(len(column))]), where)
+        values.extend(placeholder)
+        return (sql, values)
