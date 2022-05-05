@@ -52,6 +52,8 @@ class DBAccess:
                     else: cursor.execute(tmp[0], tmp[1])
                     ret = cursor.fetchall()
                     connection.commit()
+                
+                if len(ret) == 1: ret = ret[0]
 
             except Exception as e:
                 print('DB_ERROR:')
