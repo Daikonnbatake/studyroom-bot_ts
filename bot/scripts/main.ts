@@ -30,7 +30,7 @@ for (const file of commandFiles)
 
 /* bot のインスタンス化 & 各種イベント処理 */
 
-const BOT: Client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const BOT: Client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES] });
 
 // 起動時の処理
 BOT.on('ready', () => 
@@ -38,6 +38,34 @@ BOT.on('ready', () =>
 	console.log(`起動ｩ～`);
 });
 
+// ボイチャ入退室監視
+BOT.on('voiceStateUpdate', (oldVoiceState, newVoiceState) =>
+{
+	let userID = oldVoiceState.id;
+	let oldchID = oldVoiceState.channelId;
+	let newchID = newVoiceState.channelId;
+	let oldch = oldVoiceState.channel;
+	let newch = newVoiceState.channel;
+	
+	// 移動時
+	if (oldchID != null && newchID != null && oldch?.guild.id === newch?.guild.id)
+	{
+		console.log(`退室:    [${Date.now()}] user=${userID}, channel=${oldch?.name}`);
+		console.log(`入室:    [${Date.now()}] user=${userID}, channel=${newch?.name}`);
+	}
+
+	// 入室時
+	else if (oldchID === null && newchID != null)
+	{
+		console.log(`入室:    [${Date.now()}] user=${userID}, channel=${newch?.name}`);
+	}
+	
+	// 退室時
+	else if (oldchID != null && newchID === null)
+	{
+		console.log(`退室:    [${Date.now()}] user=${userID}, channel=${oldch?.name}`);
+	}
+});
 
 // コマンド受け付け
 BOT.on('interactionCreate', async (interaction) =>
